@@ -1,0 +1,14 @@
+.WEUI-panel{
+    background-color: var(--weui-BG-2);
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+/* 选择所有的WEUI-panel容器中的第一个WEUI-panel */
+.WEUI-panel:first-child{
+    margin-top: 0px;
+}
+.WEUI-panel__HD{
+    padding: 16px 16px 13px;
+    
+}

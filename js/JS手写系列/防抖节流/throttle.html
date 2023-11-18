@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">提交</button>
+    <script>
+        function send(e){
+            console.log(this,"提交了",e);
+        }
+        let btn = document.getElementById('btn')
+        btn.addEventListener('click',throttle(send,1000))
+
+        function throttle(fn,delay){
+            let last = Date.now()
+
+            return function(){
+                if(Date.now()-last>delay){
+                    fn.apply(this,arguments)
+                    last = Date.now()
+                }
+            }
+        }
+    </script>
+</body>
+</html>

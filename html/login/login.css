@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.hd {
+    
+    height: 50px;
+    position: relative;
+}
+.hd .hd_back {
+    
+    float: left;
+}
+.hd .hd_title i {
+    position: absolute;
+    font-size: 100px;
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: -39px;
+}
+.bd{
+    padding: 30px;
+    height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bd .bd_user #user {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: aqua;
+    border:  solid #fff;
+    height: 30px;
+    width: 180px;
+}
+.bd .bd_password #pwd {
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: aqua;
+    border:  solid #fff;
+    height: 30px;
+    width: 180px;
+}
+.bd .bd_login {
+    padding: 5px;
+}
+.bd .bd_login #btn {
+    background-color: red;
+    border-radius: 15px;
+    border: 1px solid #ffd;
+    width: 180px;
+    height: 30px;
+}
+.bd .bd_login .bd_reset{
+    text-align: center;
+}
+
+.toast {
+    display: none;
+    z-index: 1;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+
+    width: 200px;
+    height: 100px;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+
+}
+
+.test {
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.toast.show{
+    display: block;
+}
