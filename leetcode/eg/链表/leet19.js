@@ -11,20 +11,25 @@ function ListNode(val, next) {
  * @param {number} n
  * @return {ListNode}
  */
+
+
 const head = [1, 2, 3, 4, 5], n = 2
 var removeNthFromEnd = function (head, n) {
     if (!head) {
         return head
     }
+
     const dummy = new ListNode(-1,head)
     let fast = dummy, slow = dummy
-    let j = n-1
     while (n) {
         fast = fast.next
         n--
     }
-    while(!fast){
-        
+    while(fast.next){
+        fast = fast.next
+        slow = slow.next
     }
+    slow.next = slow.next.next
 
+    return dummy.next
 };
