@@ -24,6 +24,7 @@ var deleteDuplicates = function (head) {
         if(prev.next.val === prev.next.next.val){
             const x = prev.next.val
             while(prev.next && prev.next.val ===x){
+                //删除
                 prev.next = prev.next.next;
             }
         }else{

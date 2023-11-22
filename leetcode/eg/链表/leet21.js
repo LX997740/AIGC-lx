@@ -26,7 +26,7 @@ var mergeTwoLists = function (list1, list2) {
         l3 = l3.next
     }
     l3.next = list1 === null ? list2 : list1
-    return l3
+    return l3head.next
 
 };
 console.log(mergeTwoLists(list1,list2));
