@@ -28,7 +28,7 @@ function bb2() {
     }, 300)
 }
 
-xq().then(() => {
+xq().then(() => {//.then虽然会返回一个promise，但是当执行then的回调有人为返回的promise时,  .then默认的promise会失效
     return mr()
 }).then(() => {
     return bb()
