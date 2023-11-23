@@ -14,6 +14,16 @@
       "title": "写给新手的全栈快速入门",
       "author": "李旭",
       "id": 3
+    },
+    {
+      "title": "s",
+      "author": "s",
+      "id": 6
+    },
+    {
+      "title": "设计模式",
+      "author": "xxxxx",
+      "id": 7
     }
   ],
   "comments": [
@@ -26,6 +36,11 @@
       "id": 2,
       "postId": 1,
       "body": "学习了"
+    },
+    {
+      "body": "xxxxxxxxx",
+      "postId": "1",
+      "id": 3
     }
   ]
 }
