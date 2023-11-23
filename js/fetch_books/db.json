@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "JAVAScript",
+      "author": "阮一峰"
+    },
+    {
+      "id": 2,
+      "title": "JavaScript语言精粹",
+      "author": "宋"
+    },
+    {
+      "title": "写给新手的全栈快速入门",
+      "author": "李旭",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "postId": 1,
+      "body": "some comment"
+    },
+    {
+      "id": 2,
+      "postId": 1,
+      "body": "学习了"
+    }
+  ]
+}
