@@ -10,7 +10,6 @@ function memoize(fn) {
     return function () {
         //唯一性
         let key = arguments.length + Array.prototype.join.call(arguments, ',');
-        // console.log(key);
         if (key in cache) {
             return cache[key]
         } else {
@@ -18,3 +17,5 @@ function memoize(fn) {
         }
     }
 }
+// commonjs 模块化方案
+module.exports = memoize
