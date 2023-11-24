@@ -26,3 +26,10 @@
 
 - 把文本如何转换成向量  数学表达 openai提供embedding接口
     cosin 值
+
+- openai 接口:Completion \ chat\ embedding
+- embedding 
+    openai 的新接口
+    查看keyword+数据 都进行向量运算
+    cosin_similarity 计算两个向量间的相似度 ->0 相同或相似的.
+    相反的话 就是负值
