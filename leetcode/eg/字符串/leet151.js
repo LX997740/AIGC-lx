@@ -4,15 +4,15 @@
  * @return {string}
  * @author lx
  */
-const s = "the    sky is blue   "
+const s = " hello  world "
 var reverseWords = function (s) {
     // 字符串转数组
     const strArr = Array.from(s);
-
-    // 翻转
-    reverse(strArr, 0, strArr.length - 1);
     // 移除多余空格
     removeExtraSpaces(strArr);
+    // 翻转
+    reverse(strArr, 0, strArr.length - 1);
+
 
     let start = 0;
 
@@ -25,26 +25,25 @@ var reverseWords = function (s) {
     }
 
     return strArr.join('');
-};
+}
 
 // 删除多余空格
 function removeExtraSpaces(strArr) {
-    let slowIndex = 0;
-    let fastIndex = 0;
-
-    while (fastIndex < strArr.length) {
-        // 移除开始位置和重复的空格
-        if (strArr[fastIndex] === ' ' && (fastIndex === 0 || strArr[fastIndex - 1] === ' ')) {
-            fastIndex++;
-        } else {
-            strArr[slowIndex++] = strArr[fastIndex++];
+    let slow = 0
+    console.log(strArr);
+    for (let fast = 0; fast < strArr.length; fast++) {
+        if (strArr[fast] != ' ') { //遇到非空格就处理，即删除所有空格。
+            if (slow != 0) {
+                strArr[slow++] = ' ';
+            } //手动控制空格，给单词之间添加空格。slow != 0说明不是第一个单词，需要在单词前添加空格。
+            while (fast < strArr.length && strArr[fast] != ' ') { //补上该单词，遇到空格说明单词结束。
+                strArr[slow++] = strArr[fast++];
+            }
         }
     }
-
-    // 移除末尾空格
-    strArr.length = strArr[slowIndex - 1] === ' ' ? slowIndex - 1 : slowIndex;
+    strArr.length = slow
+    console.log(strArr);
 }
-
 // 翻转从 start 到 end 的字符
 function reverse(strArr, start, end) {
     let left = start;
@@ -57,5 +56,4 @@ function reverse(strArr, start, end) {
         right--;
     }
 }
-
-console.log(reverseWords(s));
+reverseWords(s)
