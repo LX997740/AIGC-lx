@@ -16,18 +16,19 @@ function bubbleSort(arr) {
 ## 选择排序
 ```js
 function selectSort(arr) {
+    //不断地缩小区间,在区间中找到最小值放在区间左侧
     for (let i = 0; i < arr.length - 1; i++) {
-        let minIndex = i;
+        let minIndex = i
         for (let j = i + 1; j < arr.length; j++) {
             if (arr[j] < arr[minIndex]) {
-                minIndex = j;
+                minIndex = j
             }
         }
         if (minIndex !== i) {
-            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]
         }
     }
-    return arr;
+    return arr
 }
 ```
 ## 插入排序
