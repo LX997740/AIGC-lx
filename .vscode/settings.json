@@ -1,5 +1,5 @@
 {
     "liveServer.settings.port": 5501,
-    "Lingma.cloudModelAutoTriggerGenerateLength": "long",
-    "Lingma.cloudModelManualTriggerGenerateLength": "long"
+    "Lingma.cloudModelAutoTriggerGenerateLength": "line",
+    "Lingma.cloudModelManualTriggerGenerateLength": "line"
 }
