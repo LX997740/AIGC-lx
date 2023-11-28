@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <template id="my-app">
+        <!-- <div :class="name">子进</div>
+        <div :class="{'active':isActive}">君君</div>
+        <button @click="change">切换</button> -->
+
+        <!-- <div :class="{'active':isActive,'title':true}">但总</div> -->
+        <!-- <div class="lang" :class="name">浪哥</div> -->
+        <div class="baobao" :class="className">旭旭宝宝</div>
+        <div class="baby" :class="changeName()">阳阳</div>
+        <div :class="['feng','baby',name]">冯总</div>
+        <div :class="['wang',isActive ? 'active' : '']">老王</div>
+        <div :class="['hh',{'active':isActive}]">哼哼</div>        
+    </template>
+
+    <script>
+        const App = {
+            template: '#my-app',
+            data() {
+                const name = 'username'
+                isActive = true
+                const className = {
+                    active: true,
+                    title: true
+                }
+                return {
+                    name,
+                    isActive,
+                    className
+                }
+            },
+            methods: {
+                change() {
+                    this.isActive = !this.isActive
+                },
+                changeName() {
+                    return 'yyyy'
+                }
+            }
+        }
+
+
+        Vue.createApp(App).mount('#app')
+    </script>
+</body>
+
+</html>

@@ -35,4 +35,24 @@ function selectSort(arr) {
 
 # 进阶排序算法
 ## 快速排序
+```js
+function quickSort(arr) {
+    if (arr.length <= 1) {
+        return arr
+    }
+    const base = arr[0]
+    const len = arr.length
+    let left = [], right = []
+
+    for (let i = 1; i < len; i++) {
+        if (arr[i] < base) {
+            left.push(arr[i])
+        }
+        else {
+            right.push(arr[i])
+        }
+    }
+    return [...quickSort(left), base, ...quickSort(right)]
+}
+```
 ## 归并排序
