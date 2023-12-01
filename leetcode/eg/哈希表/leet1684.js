@@ -5,7 +5,7 @@
  * @return {number}
  * @author lx
  */
-const allowed = "ab", words = ["ad","bd","aaab","baa","badab"]
+const allowed = "fstqyienx", words = ["n","eeitfns","eqqqsfs","i","feniqis","lhoa","yqyitei","sqtn","kug","z","neqqis"]
 
 var countConsistentStrings = function(allowed, words) {
     let res = 0
@@ -13,7 +13,9 @@ var countConsistentStrings = function(allowed, words) {
     for(let i = 0; i < words.length; i++) {
         for(let j = 0; j < words[i].length; j++) {
             if(!set.has(words[i][j])) {
+                console.log(words[i]);
                 res++
+                break
             }
         }
     }
