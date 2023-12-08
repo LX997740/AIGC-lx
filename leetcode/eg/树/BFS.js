@@ -1,17 +1,27 @@
 //层序遍历
 function BFS(root) {
-    const queue = [];
-    queue.push(root);
-    
-    while (queue.length) {
-        const top = queue[0];
-        console.log(top);
-        if (top.left) {
-            queue.push(top.left);
-        }
-        if (top.right) {
-            queue.push(top.right);
-        }
-        queue.shift();
+    if (!root) {
+        return [];
     }
+
+    let result = [];
+    let queue = [];
+    queue.push(root);
+
+    while (queue.length) {
+        let node = queue.shift();
+        let arr = []; 
+        for (let i = 0; i < queue.length; i++) {
+            if (node.left) {
+                queue.push(node.left);
+            }
+            if (node.right) {
+                queue.push(node.right);
+            }
+            arr.push(node.val);
+        }
+        result.push(arr);
+    }
+
+    return result;
 }
