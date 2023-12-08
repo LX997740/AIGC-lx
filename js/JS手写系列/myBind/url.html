@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //? 查询字符串 query string -> 后台
+        // //js parse url 得到params url中的参数
+        // // {
+        // //     user:'阿飞',
+        // //     age:16
+        // // }
+        // function getParams(url) {
+        //     const res = {}
+        //     if (url.indexOf('?') !== -1) {
+        //         name = url.split('?')[1]
+        //         arr = name.split('&')
+        //         console.log(arr);
+        //         arr.forEach(item => {
+        //             const [key, value] = item.split('=')
+        //             res[key] = decodeURIComponent(value)
+        //         })
+        //     }
+        //     return res
+        // }
+        // //get请求会 编码url
+        // const user = getParams('http://www.baidu.com?user=%E9%98%BF%E9%A3%9E&age=16')
+        // console.log(user)
+        const urlSearchParams = new URLSearchParams('?user=%E9%98%BF%E9%A3%9E&age=16')
+        console.log(urlSearchParams.entries().next())
+        console.log(urlSearchParams.entries().next())
+
+        const params = Object.fromEntries(urlSearchParams.entries())
+        // console.log(params)
+    </script>
+</body>
+
+</html>

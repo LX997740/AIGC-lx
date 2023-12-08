@@ -10,29 +10,26 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var minDepth = function (root) {
-    if (root === null) return 0;
-
-    let queue = [root];
-    let treeDeep = 0
-    while (queue.length) {
-        let len = queue.length;
-
-        for (let i = 0; i < len; i++) {
-            let node = queue.shift();
-            if (node.left) {
-                queue.push(node.left);
-            }
-
-            if (node.right) {
-                queue.push(node.right);
-            }
-            if (i === 0) {
-                treeDeep++;
-            }
-            if (node.left === null && node.right === null) {
-                return treeDeep
-            }
-        }
+var countNodes = function (root) {
+    let total = 0
+    let queue = []
+    queue.push(root)
+    if (!root) {
+        return 0
     }
+    while (queue.length) {
+        let len = queue.length
+        for (let i = 0; i < len; i++) {
+            let node = queue.shift()
+            if (node.left) {
+                queue.push(node.left)
+            }
+            if (node.right) {
+                queue.push(node.right)
+            }
+            total++
+        }
+
+    }
+    return total
 };
