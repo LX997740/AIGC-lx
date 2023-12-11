@@ -49,3 +49,16 @@
 	},
 	})
 ```
+- 企业级vue开发框架 element-plus pc版
+  vue 是渐进式的MVVM开发框架
+  element-plus是一套基于vue3.0的组件库 ,可以找到我们想要的组件
+
+- vite 写了一段让element-plus自动引入的代码
+
+- 通用组件
+	/components/common/
+	不属于特定的组件,极高的复用性 在多个项目中可以复用
+
+- 引入图标字体库
+	- 要用到哪些图标
+		import { } from '@icon-park/vue-next'
