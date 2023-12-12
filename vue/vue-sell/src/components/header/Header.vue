@@ -1,44 +1,85 @@
 <template>
-    <div class="header">
+    <div class="header" v-if="seller.avatar" @click="showDetail">
         <div class="content-wrapper">
             <div class="logo">
-                <img src="http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg" />
+                <img :src="seller.avatar" />
             </div>
             <div class="content">
                 <div class="title">
                     <span class="brand"></span>
-                    <span class="name">店铺名称</span>
+                    <span class="name">{{ seller.name }}</span>
                 </div>
-                <div class="description">蜂鸟专送/38分钟送达</div>
-                <div class="support">
-                    <!--  -->
-                    <span class="text">在线支付,满28-5</span>
+                <div class="description">
+                    {{ seller.description }}/{{ seller.deliveryTime }}分钟送达
+                </div>
+                <div class="support" v-if="seller.supports">
+                    <SupportIcon size="1" :type="seller.supports[0].type" />
+                    <span class="text">{{ seller.supports[0].description }}</span>
                 </div>
             </div>
-            <div class="support-count">
-                <span class="count">5个</span>
-                <i class="iconfont">></i>
+            <div class="support-count" v-if="seller.supports">
+                <span class="count">{{ seller.supports.length }}个</span>
+                <i class="iconfont icon-youjiantou">
+                </i>
             </div>
         </div>
-        
-        <div class="bulletin-wrapper">
 
+        <div class="bulletin-wrapper">
+            <span class="bulletin-title"></span>
+            <span class="bulletin-text">{{ seller.bulletin }}</span>
+            <i class="iconfont icon-youjiantou"></i>
         </div>
+
+        <div class="bg" :style="`background-image: url(${seller.avatar})`">
+        </div>
+
+        <HeaderDetail v-show="detailShow" @closeDetail="handle" />
     </div>
 </template>
 
 <script>
 
-export default {
+import SupportIcon from '@/components/support-icon/Support-Icon.vue'
+import HeaderDetail from '@/components/header-detail/Header-detail.vue'
 
+export default {
+    components: {
+        SupportIcon,
+        HeaderDetail
+    },
+    props: {
+        seller: {
+            type: Object,
+            default: () => {
+                return {}
+            }
+        },
+    },
+    data() {
+        return {
+            detailShow: false
+        }
+    },
+    methods: {
+        showDetail() {
+            this.detailShow = true
+        },
+        handle(val) {
+            console.log('子组件向父组件传来一个值为',val);
+            this.detailShow = val
+        }
+    }
 }
+
 </script>
 
 <style lang="less" scoped>
+
 @import '@/common/style/variable.less';
 @import '@/common/style/mixin.less';
 
 .header {
+    position: relative;
     background: @color-background-ss;
 
     .content-wrapper {
@@ -93,6 +134,7 @@ export default {
                 align-items: center;
 
                 .text {
+                    margin-left: 4px;
                     font-size: @fontsize-small-s;
                 }
             }
@@ -121,6 +163,48 @@ export default {
                 margin-left: 2px;
             }
         }
+    }
+
+    .bulletin-wrapper {
+        color: @color-white;
+        display: flex;
+        height: 28px;
+        padding: 0 8px;
+        background-color: @color-background-sss;
+        align-items: center;
+
+        .bulletin-title {
+            // width: 22px;
+            flex: 0 0 22px;
+            height: 12px;
+            .bg-image('bulletin');
+            background-size: 100% 100%;
+        }
+
+        .bulletin-text {
+            flex: 1;
+            margin-left: 4px;
+            font-size: @fontsize-small-s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .iconfont {
+            flex: 0 0 10px;
+            font-size: @fontsize-small-s;
+        }
+    }
+
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-size: 100% 100%;
+        z-index: -1;
+        filter: blur(10px);
     }
 }
 </style>
