@@ -7,8 +7,8 @@
 export default {
     props: {//接受父组件传进来的值
         size: {
-            type: String,
-            default: '1'
+            type: Number,
+            default: 1
 
         },
         type: {

@@ -13,7 +13,7 @@
                     {{ seller.description }}/{{ seller.deliveryTime }}分钟送达
                 </div>
                 <div class="support" v-if="seller.supports">
-                    <SupportIcon size="1" :type="seller.supports[0].type" />
+                    <SupportIcon :size="1" :type="seller.supports[0].type" />
                     <span class="text">{{ seller.supports[0].description }}</span>
                 </div>
             </div>
@@ -33,7 +33,7 @@
         <div class="bg" :style="`background-image: url(${seller.avatar})`">
         </div>
 
-        <HeaderDetail v-show="detailShow" @closeDetail="handle" />
+        <HeaderDetail v-show="detailShow" @closeDetail="handle" :Detailseller="seller" />
     </div>
 </template>
 
@@ -65,7 +65,7 @@ export default {
             this.detailShow = true
         },
         handle(val) {
-            console.log('子组件向父组件传来一个值为',val);
+            // console.log('子组件向父组件传来一个值为',val);
             this.detailShow = val
         }
     }
