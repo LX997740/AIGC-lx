@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let tmp = '我是{{name}},年龄{{age}},性别{{sex}}'
+        let person = {
+            name: '张三',
+            age: 18,
+            sex: '男'
+        }
+        console.log(render(tmp, person))
+
+        function render(tmp, person) {
+            //{}在reg中是特定字符,在这里我们是想匹配{}本身, 所有要转义
+            //  \d 代表数字  \w 代表字母  \w+代表一个或多个字母  (\w+)表示分组
+            const reg = /\{\{(\w+)\}\}/
+            if (reg.test(tmp)) {//return boolean值
+                console.log('有的', reg.exec(tmp));
+                const name = reg.exec(tmp)[1]
+                console.log(name);
+
+                tmp = tmp.replace(reg, person[name])
+                console.log(tmp)
+
+                return render(tmp, person)
+            }
+            return tmp
+            // console.log(Object.prototype.toString.call(reg)) //[object RegExp]
+        }
+
+    </script>
+</body>
+
+</html>
