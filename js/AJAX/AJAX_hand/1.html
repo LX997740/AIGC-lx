@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax业务流程封装</title>
+</head>
+
+<body>
+    <script>
+        //返回Promise对象的函数
+        //Promise then 是微任务
+        function getDataAjax(url) {
+            //Promise 是es6提供的一个类 ,实例化时 ,立即执行传给他的执行器
+            //executor 执行器 同步执行
+            return new Promise((resolve, reject) => {
+                // console.log('111')
+                //异步任务的容器
+                // setTimeout(() => {
+                //     resolve(1)
+                // }, 2000)
+
+                //创建XMLHttpRequest对象 考虑浏览器的兼容性 ie低版本不支持XMLHttpRequest对象
+                const xhr = XMLHttpRequest
+                    ? new XMLHttpRequest()
+                    : new ActiveXObject('microsoft.XMLHTTP')
+
+
+                //打开一个主动请求数据的通道
+                console.log(xhr.readyState)//0
+                xhr.open('GET', url, false)
+                console.log(xhr.readyState)//1   http请求通道打开
+                xhr.onreadystatechange = function () {
+                    console.log(xhr.readyState)//4   完成所有数据的传输
+                    if (xhr.readyState !== 4) return
+                    //304 Not Modified 性能优化 
+                    //服务器端资源 在多次请求中没有改变(updata_time 文件 ) 304响应头,不传输响应体
+                    //前端拿到304 会去浏览器缓存中拿到资源
+                    //协商缓存
+                    if (xhr.status === 200 || xhr.status === 304) {
+                        resolve(xhr.responseText)
+                    } else {
+                        reject(xhr.responseText)
+                    }
+                }
+                xhr.send()
+                console.log(xhr.readyState)
+            })
+
+        }
+        (async function () {
+            //await 后面是一个Promise对象
+            const p = getDataAjax('https://api.github.com/users/LX997740/repos')
+            console.log(p) //pending状态
+            try {
+                const data = await p // 等待p的状态变成fulfilled状态 ,异步变同步
+                console.log(p);//fulfilled状态
+                console.log(data)
+            } catch (e) {
+                console.log(e)
+            }
+        })()
+    </script>
+</body>
+
+</html>
