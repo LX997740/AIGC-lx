@@ -12,7 +12,7 @@
             <div class="flex-1 overflow-hidden">
                 <ElScrollbar>
                     <div class="container max-auto">
-                        <Discover />
+                        <router-view />
                     </div>
                 </ElScrollbar>
             </div>
@@ -25,7 +25,7 @@
 // import { onMounted } from 'vue'
 import Menu from '@/components/layout/menu/Menu.vue'
 import Header from '@/components/layout/header/Header.vue'
-import Discover from '@/views/discover/Discover.vue'
+
 // import { getBanner, getSearchSuggest } from '@/utils/api'
 
 // onMounted(async () => {

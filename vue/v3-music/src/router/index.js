@@ -8,11 +8,15 @@ const router = createRouter({
             path: '/',
             name: 'home',
             // App.vue用来挂载的不是用来写具体的
-            
-            component: () => import('@/views/Root.vue')
-        },
-        {
-
+            component: () => import('@/views/Root.vue'),
+            redirect: { name: 'discover' },
+            children: [
+                {
+                    path: 'discover',
+                    name: 'discover',
+                    component: () => import('@/views/discover/Discover.vue')
+                },
+            ]
         },
     ]
 })

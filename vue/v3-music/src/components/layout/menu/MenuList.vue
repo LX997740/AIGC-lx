@@ -7,14 +7,12 @@
 
                 <div class="menu-title text-main">{{ menuItem.name }}</div>
 
-                <div class="menu-item hover-bg-main text-main" 
-                v-for="menu in menuItem.menus" :key="menu.key"
-                    :class="{ 'active': currentKey === menu.key }" 
-                    @click="changeMenu(menu)">
-                    <IconPark :icon="menu.icon" :theme="menu.theme" size ="18" />
+                <div class="menu-item hover-bg-main text-main" v-for="menu in menuItem.menus" :key="menu.key"
+                    :class="{ 'active': currentKey === menu.key }" @click="changeMenu(menu)">
+                    <IconPark :icon="menu.icon" :theme="menu.theme" size="18" />
                     <span class="ml-1">{{ menu.name }}</span>
                 </div>
-                
+
             </div>
 
         </div>
@@ -30,6 +28,7 @@ import IconPark from '@/components/common/IconPark.vue'
 import useMenu from './useMenu.js'
 
 const { menus, currentKey, changeMenu } = useMenu()
+
 </script>
 
 <style scoped>

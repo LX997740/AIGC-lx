@@ -9,11 +9,13 @@ import {
     DownloadThree, 
     PlayTwo
 } from '@icon-park/vue-next'
-
+import { useRouter } from 'vue-router'
 export default function useMenu() {
     let currentKey = ref('discover')
     const changeMenu = (menu) => {
         currentKey.value = menu.key
+        const router = useRouter()
+        
     }
     const menus = [
         {
