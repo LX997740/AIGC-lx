@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <div id="wrapper"></div>
+    </div>
+
+    <script>
+        // 假设不用document.querySelector 封装一个$()函数 返回?
+        //立即执行函数
+        (function () {
+            //JS命名 首字母 [_ , a-z , A-Z]
+            //不会污染外部空间, 用来封装类  vue源码就是这么开始的
+            function _$(els) {
+                // console.log(els);
+                //constructor
+                this.elements = []
+                for (let i = 0, len = els.length; i < len; i++) {
+                    var element = els[i]
+                    if (typeof element === 'string') {
+                        element = document.getElementById(element)
+                    }
+                    this.elements.push(element)
+                }
+            }
+            
+            window.$ = function () {
+                return new _$(arguments)
+            }
+        })()
+        console.log($('root', 'wrapper', document.getElementById('wrapper')).elements);
+        // $('#root') => document.querySelectorAll('#root') 简洁 省时间
+    </script>
+</body>
+
+</html>
