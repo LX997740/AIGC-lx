@@ -6,9 +6,16 @@
 
 <script>
 import ItemContainer from '@/components/ItemContainer.vue'
+import { mapActions } from 'vuex'
 export default {
     components: {
         ItemContainer
+    },
+    methods: {
+        ...mapActions(['getQuestionListAction'])
+    },
+    created() {
+        this.getQuestionListAction()
     }
 }
 </script>
