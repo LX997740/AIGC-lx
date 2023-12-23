@@ -1,34 +1,14 @@
 <script setup lang="ts">
-import { onMounted, toRefs } from 'vue'
-import { useBannerStore } from './store/banner'
-import { usePersonalizedStore } from './store/personalized';
 
-const { banners } = toRefs(useBannerStore())
-const { getBanners } = useBannerStore()
-
-const { personalizedMv } = toRefs(usePersonalizedStore())
-const { getPersonalized } = usePersonalizedStore()
-
-onMounted(async () => {
-	await getBanners()
-	await getPersonalized()
-})
+import Banner from './components/Banner.vue';
+import Personalized from './components/Personalized.vue';
 
 </script>
 
 <template>
 	<div>
-		<ul>
-			<li v-for="banner in banners" :key="banner.targetId">
-				<img :src="banner.pic">
-			</li>
-		</ul>
-
-		<ul>
-			<li v-for="Mv in personalizedMv" :key="Mv.id">
-				{{ Mv.name }}
-			</li>
-		</ul>
+		<Banner />
+		<Personalized />
 	</div>
 </template>
 

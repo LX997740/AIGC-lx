@@ -36,3 +36,5 @@
    - 写UI组件
       ELementPlus (熟悉) + views + components(common | components) + Tailwindcss(亮点)+ 组件设计艺术
 - App.vue 一个个组件慢慢搭
+   <> defineProps
+   - 不要用TS , 写完就好了
