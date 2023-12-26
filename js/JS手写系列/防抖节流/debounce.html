@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-
-<body>
+  </head>
+  
+  <body>
     <!-- <form onsubmit="send()">
         <div>
             <label for="user">账号</label>
@@ -22,31 +22,30 @@
         
     </form> -->
     <button id="btn">提交</button>
-    
+
     <script>
+      function send(e, a, b) {
+        console.log(this, "按钮点击", e);
+        let a = undefined
+      }
 
-        function send(e,a,b){
-            console.log(this,"按钮点击",e);
-        }
+      let btn = document.getElementById("btn");
+      btn.addEventListener("click", debounce(send, 1000));
 
-        let btn = document.getElementById('btn')
-        btn.addEventListener('click',debounce(send,1000))
+      function debounce(fn, delay) {
+        let timer;
 
-        function debounce(fn,delay){
-            let timer
+        return function () {
+          //arguments
+          // let _this = this
+          let args = arguments;
+          if (timer) clearTimeout(timer);
 
-            return function() {
-                //arguments
-                // let _this = this
-                let args = arguments
-                if(timer)clearTimeout(timer)
-
-                timer = setTimeout(()=>{
-                    fn.call(this,...args)
-                }, delay);
-            }
-        }
-
+          timer = setTimeout(() => {
+            fn.call(this, ...args);
+          }, delay);
+        };
+      }
     </script>
-</body>
+  </body>
 </html>
