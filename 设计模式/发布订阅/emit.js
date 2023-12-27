@@ -10,7 +10,7 @@ class EventEmitter {
       this._events[type].push(cb);
     }
   }
-  //订阅事件，只执行一次
+  //  
   once(type, cb) {
     const fn = (...args) => {
       cb(...args);
@@ -51,9 +51,5 @@ const fn3 = (str) => {
 
 ev.on("run", fn1);
 ev.once("run", fn2);
-
-ev.on("run", fn3);
-ev.off("run", fn3);
-
 ev.emit("run", "派发了一个事件");
 ev.emit("run", "又派发了一个事件");
