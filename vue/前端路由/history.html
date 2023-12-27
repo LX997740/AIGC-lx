@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="/home">首页</a></li>
+      <li><a href="/about">关于 </a></li>
+    </ul>
+    <div id="routerView">
+      <!-- 一个代码片段 -->
+    </div>
+    <script>
+      const routers = [
+        {
+          path: "/home",
+          component: "<h2>首页<h2>",
+        },
+        {
+          path: "/about",
+          component: "关于页面内容",
+        },
+      ];
+      const links = document.querySelectorAll("li a");
+      const routerView = document.getElementById("routerView");
+
+      window.addEventListener("DOMContentLoaded", onLoad);
+      window.addEventListener("popstate", onPopState);
+
+      function onLoad() {
+        onPopState();
+        links.forEach((a) => {
+          a.addEventListener("click", (e) => {
+            //阻止a标签默认行为
+            e.preventDefault();
+            //添加一种可以修改url又不造成页面刷新
+            history.pushState(null, "", a.getAttribute("href"));
+            //映射对应的dom
+            onPopState();
+          });
+        });
+      }
+
+      function onPopState() {
+        routers.forEach((item, index) => {
+          console.log(location.pathname);
+          if (item.path === location.pathname) {
+            routerView.innerHTML = item.component;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
