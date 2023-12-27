@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box"></div>
+    <script>
+      //创建一个支持冒泡且不能取消的look事件
+      let ev = new Event("look", { bubbles: true, cancelable: true });
+
+      let box = document.getElementById("box");
+      //订阅一个事件
+      box.addEventListener("look", function () {
+        console.log("在box上触发了look事件");
+      });
+      box.dispatchEvent(ev);
+    </script>
+
+    <style>
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+      }
+    </style>
+  </body>
+</html>

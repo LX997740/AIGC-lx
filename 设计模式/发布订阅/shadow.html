@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .title {
+        color: red;
+      }
+      body {
+        --color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="title">我是真实的标题</div>
+    </div>
+    <div id="root"></div>
+    <script>
+      let root = document.getElementById("root");
+      //创建一个shadow DOM
+      let rootShadow = root.attachShadow({
+        mode: "open",
+        delegatesFocus: true,
+      });
+
+      rootShadow.innerHTML = `
+        <style>
+            .title{
+                color:var(--color);
+            }
+        </style>
+        <div>
+          <div class="title shadow">我是shadow DOM的标题</div>
+        </div>
+      `;
+      console.log(root.shadowRoot);
+    </script>
+  </body>
+</html>
