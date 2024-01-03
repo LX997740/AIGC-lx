@@ -8,5 +8,5 @@ var obj = {
 // foo.call(obj, 100, 200);
 // foo.apply(obj, [100, 200]);
 //bind的执行会返回一个函数体,必须要再次调用才能执行掉
-var bar = foo.bind(obj)();
+// var bar = foo.bind(obj);
 bar(100, 200);
