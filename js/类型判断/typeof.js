@@ -27,5 +27,5 @@ let date = new Date()
 
 // console.log(typeof obj);//object
 // console.log(typeof arr);//object
-// console.log(typeof fn);//object
+// console.log(typeof fn);//function
 // console.log(typeof date);//object

@@ -8,7 +8,7 @@
 只能判定引用类型,不能判定原始类型
 - 通过原型链查找来判断的
 - a instanceof b
-    - 判断a的隐式模型是否等于b的显式原型 直到null
+    - 判断a的隐式原型是否等于b的显式原型 直到null
 
 # Object.prototype.toString.call(xxx)  xxx  Object.prototype.toString()
 1.If the this value is undefined, return "[object Undefined]".

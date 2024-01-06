@@ -19,3 +19,6 @@ console.log(arr instanceof Array);//true
 console.log(fn instanceof Function);//true
 console.log(date instanceof Date);//true
 
+console.log(str instanceof String);//false
+console.log(number instanceof Number);//false
+console.log(flag instanceof Boolean);//false
