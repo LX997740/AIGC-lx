@@ -1,6 +1,10 @@
 const Router = require("@koa/router");
 const router = new Router();
-const { userLogin,userRegister,vaildUser } = require("../controllers/mysqlControl.js");
+const {
+  userLogin,
+  userRegister,
+  vaildUser,
+} = require("../controllers/mysqlControl.js");
 
 //定义接口
 // 登录接口
@@ -41,22 +45,45 @@ router.post("/login", async (ctx) => {
 //注册接口
 router.post("/register", async (ctx) => {
   //拿到前端传递的username,password,nickname去数据库中校验username是否存在
-  //如果不存在就往数据库植入一条新的数据
+
   const { username, password, nickname } = ctx.request.body;
-  try{
+  //判断账号密码昵称是否为空
+  if (!username || !password || !nickname) {
+    ctx.body = {
+      code: "8003",
+      data: "error",
+      msg: "账号密码或昵称不能为空",
+    };
+    return;
+  }
+  try {
     const result = await vaildUser(username);
-    if(result.length){
-      //如果查询到数据，说明账号存在
+    //如果查询到数据，说明账号存在
+    if (result.length) {
       ctx.body = {
         code: "8001",
         data: "error",
         msg: "账号已存在",
       };
-    }else {
-      const result = await userRegister(username, password, nickname);
-      console.log(result);
+    } else {
+      //如果不存在就往数据库植入一条新的数据
+      const valuse = [username, password, nickname];
+      const result = await userRegister(valuse);
+      if (result.affectedRows) {
+        ctx.body = {
+          code: "8000",
+          data: "success",
+          msg: "注册成功",
+        };
+      } else if (result.affectedRows === 0) {
+        ctx.body = {
+          code: "8006",
+          data: "error",
+          msg: "注册失败",
+        };
+      }
     }
-  }catch(err){
+  } catch (err) {
     ctx.body = {
       code: "8005",
       data: err,

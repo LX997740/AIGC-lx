@@ -7,6 +7,7 @@
       </div>
       <van-form @submit="onSubmit">
         <van-cell-group inset>
+          <!-- 昵称 -->
           <van-field
             v-model="nickname"
             name="昵称"
@@ -14,6 +15,7 @@
             placeholder="昵称"
             :rules="[{ required: true, message: '请填写昵称' }]"
           />
+          <!-- 用户名 -->
           <van-field
             v-model="username"
             name="用户名"
@@ -21,6 +23,7 @@
             placeholder="用户名"
             :rules="[{ required: true, message: '请填写用户名' }]"
           />
+          <!-- 密码 -->
           <van-field
             v-model="password"
             type="password"
@@ -30,6 +33,7 @@
             :rules="[{ required: true, message: '请填写密码' }]"
           />
         </van-cell-group>
+        <!-- 注册按钮 -->
         <div style="margin: 16px">
           <van-button round block color="#7232dd" native-type="submit">
             注册
@@ -44,18 +48,30 @@
 <script setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import axios from "../api";
+import { showSuccessToast } from "vant";
 
 const router = useRouter();
 const username = ref("");
 const password = ref("");
 const nickname = ref("");
 
-const onSubmit = () => {
-  //发请求,将用户名和密码传给后端
-  
+//注册
+const onSubmit = async () => {
+  //发请求,将用户名和密码，昵称传给后端
+  const res = await axios.post("/register", {
+    username: username.value,
+    password: password.value,
+    nickname: nickname.value,
+  });
+  //判断是否注册成功如果注册成功，跳转到登录页面,
+  showSuccessToast(res.data.msg);
+  setTimeout(() => {
+    router.push("/login");
+  }, 1500);
 };
+//跳转到登录页面
 const onLogin = () => {
-  //跳转到注册页面
   router.push("/login");
 };
 </script>
