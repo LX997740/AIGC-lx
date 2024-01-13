@@ -25,7 +25,7 @@ new Promise(resolve => {
         console.log('promise2')
     })
 
-console.log('script end')
+// console.log('script end')
 // script start
 // async2 end
 // Promise   
