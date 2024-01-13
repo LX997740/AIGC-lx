@@ -35,27 +35,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { useRouter } from "vue-router";
-import axios from "../api";
+import { useLoginStore } from "../store/useUserStore";
+import { storeToRefs } from "pinia";
 
 const router = useRouter();
-const username = ref("");
-const password = ref("");
-
-const onSubmit = async () => {
-  //发请求,将用户名和密码传给后端
-  const res = await axios.post("/login", {
-    username: username.value,
-    password: password.value,
-  });
-  // console.log(res);
-  //保存用户信息
-  sessionStorage.setItem("userInfo", JSON.stringify(res.data));
-  if (res.data.code === "8000") {
-    router.push("/noteclass");
-  }
-};
+const { username, password } = storeToRefs(useLoginStore());
+const { onSubmit } = useLoginStore();
 
 const onRegister = () => {
   //跳转到注册页面

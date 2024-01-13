@@ -46,30 +46,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { useRouter } from "vue-router";
-import axios from "../api";
-import { showSuccessToast } from "vant";
-
 const router = useRouter();
-const username = ref("");
-const password = ref("");
-const nickname = ref("");
 
-//注册
-const onSubmit = async () => {
-  //发请求,将用户名和密码，昵称传给后端
-  const res = await axios.post("/register", {
-    username: username.value,
-    password: password.value,
-    nickname: nickname.value,
-  });
-  //判断是否注册成功如果注册成功，跳转到登录页面,
-  showSuccessToast(res.data.msg);
-  setTimeout(() => {
-    router.push("/login");
-  }, 1500);
-};
+import { useRegisterStore } from "../store/useUserStore";
+import { storeToRefs } from "pinia";
+const { username, password, nickname } = storeToRefs(useRegisterStore());
+const { onSubmit } = useRegisterStore();
+
 //跳转到登录页面
 const onLogin = () => {
   router.push("/login");

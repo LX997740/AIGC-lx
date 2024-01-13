@@ -1,5 +1,6 @@
 const Router = require("@koa/router");
 const router = new Router();
+const jwt = require("../utils/JWT");
 const {
   userLogin,
   userRegister,
@@ -24,7 +25,7 @@ router.post("/login", async (ctx) => {
         code: "8000",
         msg: "登录成功",
         data: data,
-        token: "123456",
+        token: jwt.sign({ _id: data.id }), // 生成token，并传入用户_id
       };
     } else {
       //如果查询不到数据，说明账号密码错误

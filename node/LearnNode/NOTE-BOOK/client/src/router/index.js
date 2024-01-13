@@ -64,7 +64,7 @@ router.beforeEach((to, from, next) => {
   //判断是否在白名单
   if (!whiteList.includes(to.path)) {
     //判断是否登录
-    if (!sessionStorage.getItem("userInfo")) {
+    if (!localStorage.getItem("token")) {
       router.push("/login");
       return;
     }
