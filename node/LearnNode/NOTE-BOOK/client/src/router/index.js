@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import axios from "../api";
 
 const routes = [
   {
@@ -58,18 +59,19 @@ const router = createRouter({
 //路由守卫
 //设置白名单
 const whiteList = ["/login", "/register"];
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   //设置标题
   document.title = to.meta.title;
   //判断是否在白名单
   if (!whiteList.includes(to.path)) {
-    //判断是否登录
-    if (!localStorage.getItem("token")) {
+    // 把token传到后端
+    try {
+      const res = await axios.get("/protectRoute");
+    } catch (e) {
+      //判断是否登录
       router.push("/login");
       return;
     }
-    next();
-    return;
   }
   next();
 });

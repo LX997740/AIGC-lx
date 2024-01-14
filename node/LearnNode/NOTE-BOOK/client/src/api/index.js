@@ -5,6 +5,18 @@ axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 //请求拦截
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 //响应拦截
 axios.interceptors.response.use((res) => {

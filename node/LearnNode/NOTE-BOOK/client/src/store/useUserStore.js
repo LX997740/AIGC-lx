@@ -19,9 +19,12 @@ export const useLoginStore = defineStore("login", () => {
     //将后端传来的token放入本地存储中
     // console.log(res.data);
     localStorage.setItem("token", res.data.token);
-
-    if (res.data.code === "8000") {
-      router.push("/noteclass");
+    try {
+      if (res.data.code === "8000") {
+        router.push("/noteclass");
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
   return {
