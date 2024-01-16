@@ -4,46 +4,47 @@ import { useRouter } from "vue-router";
 import axios from "../api";
 import { showSuccessToast, showFailToast } from "vant";
 
-export const useLoginStore = defineStore("login", () => {
+export const useRegisterStore = defineStore("register", () => {
   const router = useRouter();
   const phone = ref("");
+  const username = ref("");
   const password = ref("");
   const checked = ref(false);
 
-  //登录函数
-  const login = async () => {
-    //验证是否勾选了协议
+  const toLogin = () => {
+    router.push("/login");
+  };
+
+  const register = async () => {
+    // 验证是否勾选协议
     if (checked.value == false) {
       showFailToast("请勾选同意协议");
       return;
     }
-    //发请求给后端验证登录
-    const res = await axios.post("/login", {
+    //发请求给后端
+    const res = await axios.post("/register", {
       phone: phone.value,
+      username: username.value,
       password: password.value,
     });
-    //保存token
-    localStorage.setItem("token", res.data.token);
     try {
       if (res.data.code === "8000") {
-        showSuccessToast("登录成功");
+        showSuccessToast("注册成功");
         setTimeout(() => {
-          router.push("/home");
+          router.push("/login");
         }, 1500);
       }
     } catch (e) {
-      // console.log(e);
+      showFailToast("注册失败");
     }
   };
-  //跳转注册页面
-  const toRegister = () => {
-    router.push("/register");
-  };
+
   return {
     phone,
+    username,
     password,
     checked,
-    login,
-    toRegister,
+    toLogin,
+    register,
   };
 });

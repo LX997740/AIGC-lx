@@ -3,25 +3,26 @@
     <h1 class="text-2xl font-bold text-center py-8 w-screen">注册</h1>
     <!-- 注册 -->
     <div class="p-10">
+      <!-- 头像 -->
       <div class="w-full flex justify-center">
         <img src="../assets/img/unnamed.jpg" class="w-20 h-20 rounded-full" />
       </div>
-      <van-form @submit="onSubmit">
+      <van-form @submit="register">
         <van-cell-group inset>
-          <!-- 用户名 -->
+          <!-- 电话号码 -->
           <van-field
             autofocus
-            v-model="username"
-            name="用户名"
-            label="用户名"
-            placeholder="用户名"
-            :rules="[{ required: true, message: '请填写用户名' }]"
-            left-icon="user"
+            v-model="phone"
+            name="电话号码"
+            label="电话"
+            placeholder="电话号码"
+            :rules="[{ required: true, message: '请填写电话号码' }]"
+            left-icon="phone"
           />
           <!-- 昵称 -->
           <van-field
-            v-model="nickname"
-            type="nickname"
+            v-model="username"
+            type="username"
             name="昵称"
             label="昵称"
             placeholder="昵称"
@@ -45,8 +46,8 @@
             注册
           </van-button>
         </div>
-        <div class="text-right" @click="toRegister">点击返回登录</div>
-
+        <div class="text-right" @click="toLogin">点击返回登录</div>
+        <!-- 用户协议 -->
         <van-field name="checkbox" class="mt-20">
           <template #input>
             <van-checkbox v-model="checked" />
@@ -63,11 +64,11 @@
 </template>
 
 <script setup>
-import { useLoginStore } from "../store/useLoginStore";
+import { useRegisterStore } from "../store/useRegisterStore";
 import { storeToRefs } from "pinia";
 
-const { username, password, checked } = storeToRefs(useLoginStore());
-const { login, toRegister } = useLoginStore();
+const { username, phone, password, checked } = storeToRefs(useRegisterStore());
+const { register, toLogin } = useRegisterStore();
 </script>
 
 <style scoped></style>

@@ -67,4 +67,55 @@ router.get("/protectRoute", (ctx) => {
   }
 });
 
+//注册接口
+router.post("/register", async (ctx) => {
+  //拿到前端传递的username,password,nickname去数据库中校验username是否存在
+
+  const { phone, password, username } = ctx.request.body;
+  //判断账号密码昵称是否为空
+  if (!phone || !password || !username) {
+    ctx.body = {
+      code: "8003",
+      data: "error",
+      msg: "账号密码或昵称不能为空",
+    };
+    return;
+  }
+  try {
+    const result = await vaildUser(phone);
+    //如果查询到数据，说明账号存在
+    if (result.length > 0) {
+      ctx.body = {
+        code: "8001",
+        data: "error",
+        msg: "账号已存在",
+      };
+    } else {
+      //如果不存在就往数据库植入一条新的数据
+      const valuse = [username,phone, password ];
+      const result = await userRegister(valuse);
+      
+      if (result.affectedRows) {
+        ctx.body = {
+          code: "8000",
+          data: "success",
+          msg: "注册成功",
+        };
+      } else if (result.affectedRows === 0) {
+        ctx.body = {
+          code: "8006",
+          data: "error",
+          msg: "注册失败",
+        };
+      }
+    }
+  } catch (err) {
+    ctx.body = {
+      code: "8005",
+      data: err,
+      msg: "服务器异常",
+    };
+  }
+});
+
 module.exports = router;

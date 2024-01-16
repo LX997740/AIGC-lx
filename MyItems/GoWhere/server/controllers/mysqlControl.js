@@ -42,12 +42,12 @@ const userLogin = (phone, password) => {
 };
 //注册
 const userRegister = (values) => {
-  let _sql = `insert into user set username=?,password=?,nickname=?;`;
+  let _sql = `insert into user set username=?,phone=?,password=?;`;
   return allService.query(_sql, values);
 };
 //验证用户名是否存在
-const vaildUser = (username) => {
-  let _sql = `select * from user where username='${username}';`;
+const vaildUser = (phone) => {
+  let _sql = `select * from user where phone='${phone}';`;
   return allService.query(_sql);
 };
 
