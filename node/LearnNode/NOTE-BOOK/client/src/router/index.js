@@ -3,6 +3,10 @@ import axios from "../api";
 
 const routes = [
   {
+    path: "/",
+    redirect: "/login",
+  },
+  {
     path: "/noteclass",
     name: "noteClass",
     component: () => import("../views/noteClass.vue"),
