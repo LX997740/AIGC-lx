@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import axios from "../api";
 
 //root的子路由
 const rootRoutes = [
@@ -51,6 +52,14 @@ const routes = [
       title: "登录",
     },
   },
+  {
+    path: "/register",
+    name: "register",
+    component: () => import("../views/TheRegister.vue"),
+    meta: {
+      title: "注册",
+    },
+  },
 ];
 
 const router = createRouter({
@@ -77,13 +86,19 @@ router.beforeEach(async (to, from, next) => {
     // 把token传到后端
     try {
       const res = await axios.get("/protectRoute");
+      console.log(res);
+      if (res.data) {
+        next();
+      }
     } catch (e) {
       //判断是否登录
       router.push("/login");
       return;
     }
+  } else {
+    //如果在白名单中
+    next();
   }
-  next();
 });
 
 export default router;
