@@ -1,41 +1,42 @@
 <template>
-  <div class="header" v-if="Seller.avatar" @click="showDetail">
+  <div class="header" v-if="Seller.Sellers.avatar" @click="showDetail">
     <div class="content-wrapper">
       <div class="logo">
-        <img :src="Seller.avatar" />
+        <img :src="Seller.Sellers.avatar" />
       </div>
       <div class="content">
         <div class="title">
           <span class="brand"></span>
-          <span class="name">{{ Seller.name }}</span>
+          <span class="name">{{ Seller.Sellers.name }}</span>
         </div>
         <div class="description">
-          {{ Seller.description }}/{{ Seller.deliveryTime }}分钟送达
+          {{ Seller.Sellers.description }}/{{
+            Seller.Sellers.deliveryTime
+          }}分钟送达
         </div>
-        <div class="support" v-if="Seller.supports">
-          <SupportIcon :size="1" :type="Seller.supports[0].type" />
-          <span class="text">{{ Seller.supports[0].description }}</span>
+        <div class="support" v-if="Seller.Sellers.supports">
+          <SupportIcon :size="1" :type="Seller.Sellers.supports[0].type" />
+          <span class="text">{{ Seller.Sellers.supports[0].description }}</span>
         </div>
       </div>
-      <div class="support-count" v-if="Seller.supports">
-        <span class="count">{{ Seller.supports.length }}个</span>
+      <div class="support-count" v-if="Seller.Sellers.supports">
+        <span class="count">{{ Seller.Sellers.supports.length }}个</span>
         <i class="iconfont icon-youjiantou"> </i>
       </div>
     </div>
 
     <div class="bulletin-wrapper">
       <span class="bulletin-title"></span>
-      <span class="bulletin-text">{{ Seller.bulletin }}</span>
+      <span class="bulletin-text">{{ Seller.Sellers.bulletin }}</span>
       <i class="iconfont icon-youjiantou"></i>
     </div>
 
-    <div class="bg" :style="`background-image: url(${Seller.avatar})`"></div>
+    <div
+      class="bg"
+      :style="`background-image: url(${Seller.Sellers.avatar})`"
+    ></div>
 
-    <HeaderDetail
-      v-show="detailShow"
-      @closeDetail="handle"
-      :Detailseller="seller"
-    />
+    <HeaderDetail v-show="detailShow" />
   </div>
 </template>
 
@@ -43,30 +44,22 @@
 import SupportIcon from "@/components/support-icon/Support-Icon.vue";
 import HeaderDetail from "@/components/header-detail/Header-detail.vue";
 
-import { toRefs, onMounted } from "vue";
+import { onMounted, toRefs } from "vue";
 import { useSellersStore } from "../../store/Seller";
+import { useHeaderStore } from "../../store/HeaderDetail";
 
-const { Seller } = toRefs(useSellersStore());
-const { getSellers } = useSellersStore();
+const Seller = useSellersStore();
+const { showDetail } = useHeaderStore();
+const { detailShow } = toRefs(useHeaderStore());
 
-// const detailShow = ref(false);
-
-// function showDetail() {
-//     this.detailShow = true;
-//   };
-//   function handle(val) {
-//     // console.log('子组件向父组件传来一个值为',val);
-//     this.detailShow = val;
-//   };
-console.log(Seller.value);
-onMounted(() => {
-  getSellers();
+onMounted(async () => {
+  await Seller.getSellers();
 });
 </script>
 
 <style lang="less" scoped>
-@import "@/common/style/variable.less";
-@import "@/common/style/mixin.less";
+@import "../../common/style/variable.less";
+@import "../../common/style/mixin.less";
 
 .header {
   position: relative;

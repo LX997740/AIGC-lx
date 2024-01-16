@@ -2,37 +2,29 @@
   <span class="support-icon" :class="iconClass"> </span>
 </template>
 
-<script>
-export default {
-  props: {
-    //接受父组件传进来的值
-    size: {
-      type: Number,
-      default: 1,
-    },
-    type: {
-      type: Number,
-      default: 0,
-    },
+<script setup>
+import { computed, defineProps } from "vue";
+const props = defineProps({
+  //接受父组件传进来的值
+  size: {
+    type: Number,
+    default: 1,
   },
-  computed: {
-    //计算属性的函数名直接当成数据源使用
-    iconClass() {
-      const classMap = [
-        "decrease",
-        "discount",
-        "special",
-        "invoice",
-        "guarantee ",
-      ];
-      return `icon-${this.size} ${classMap[this.type]}`;
-    },
+  type: {
+    type: Number,
+    default: 0,
   },
-};
+});
+
+const iconClass = computed(() => {
+  const classMap = ["decrease", "discount", "special", "invoice", "guarantee "];
+  return `icon-${props.size} ${classMap[props.type]}`;
+});
+
 </script>
 
 <style lang="less" scoped>
-@import "@/common/style/mixin.less";
+@import "../../common/style/mixin.less";
 
 .support-icon {
   display: inline-block;

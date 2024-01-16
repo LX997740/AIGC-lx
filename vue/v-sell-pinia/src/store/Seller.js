@@ -6,14 +6,14 @@ import { getSeller } from "../api";
 //仓库的分支,seller
 //专注于数据编程
 export const useSellersStore = defineStore("seller", () => {
-  const Seller = ref([]);
+  const Sellers = ref({});
   const getSellers = async () => {
-    if (Seller.value.length) return;
-    Seller.value = await getSeller();
-    console.log(Seller.value);
+    if (Sellers.value.length) return;
+    Sellers.value = await getSeller();
+    // console.log(Sellers.value);
   };
   return {
-    Seller,
+    Sellers,
     getSellers,
   };
 });

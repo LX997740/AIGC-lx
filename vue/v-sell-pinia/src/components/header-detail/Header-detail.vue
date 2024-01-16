@@ -3,7 +3,7 @@
     <div class="header-detail">
       <div class="detail-wrapper">
         <div class="detail-main">
-          <h1 class="name">{{ Detailseller.name }}</h1>
+          <h1 class="name">{{ Seller.Sellers.name }}</h1>
           <div class="star-warpper">
             <div class="star-on" v-for="i in score" :key="i"></div>
             <div class="star-off" v-for="i in 5 - score" :key="i"></div>
@@ -19,7 +19,7 @@
           <div class="supports">
             <div
               class="support"
-              v-for="support in Detailseller.supports"
+              v-for="support in Seller.Sellers.supports"
               :key="support.type"
             >
               <SupportIcon :size="1" :type="support.type" />
@@ -33,50 +33,44 @@
             <div class="text">公告</div>
             <div class="line"></div>
           </div>
-          <div class="bulletin">{{ Detailseller.bulletin }}</div>
+          <div class="bulletin">{{ Seller.Sellers.bulletin }}</div>
         </div>
       </div>
 
-      <div class="detail-close" @click.stop="closeDetail">x</div>
+      <div
+        class="detail-close"
+        @click.stop="
+          () => {
+            closeDetail();
+          }
+        "
+      >
+        x
+      </div>
     </div>
   </transition>
 </template>
 
-<script>
+<script setup>
 import SupportIcon from "@/components/support-icon/Support-Icon.vue";
 
-export default {
-  data() {
-    let score = Math.round(this.Detailseller.score);
+import { ref, onMounted } from "vue";
+import { useSellersStore } from "../../store/Seller";
+import { useHeaderStore } from "../../store/HeaderDetail";
 
-    return {
-      score,
-    };
-  },
-  methods: {
-    closeDetail() {
-      //子父组件通讯
-      this.$emit("closeDetail", false); //创建一个closeDetail事件
-    },
-  },
-  props: {
-    Detailseller: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
-  },
-  components: {
-    SupportIcon,
-  },
-  computed: {},
-};
+const { closeDetail } = useHeaderStore();
+const Seller = useSellersStore();
+
+const score = ref(Math.round(Seller.Sellers.score));
+
+onMounted(async () => {
+  await Seller.getSellers();
+});
 </script>
 
 <style lang="less" scoped>
-@import "@/common/style/variable.less";
-@import "@/common/style/mixin.less";
+@import "../../common/style/variable.less";
+@import "../../common/style/mixin.less";
 
 .header-detail {
   position: fixed;

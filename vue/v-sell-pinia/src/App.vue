@@ -1,14 +1,26 @@
 <template>
-  <Header />
+  <VsHeader />
   <!-- tab -->
+  <div class="tab">
+    <div class="tab-warpper">
+      <router-link to="/goods">商品</router-link>
+    </div>
+    <div class="tab-warpper">
+      <router-link to="/comment">评论</router-link>
+    </div>
+    <div class="tab-warpper">
+      <router-link to="/seller">商家</router-link>
+    </div>
+  </div>
   <router-view />
 </template>
 
 <script setup>
-import Header from "./components/header/VsHeader.vue";
+import VsHeader from "./components/header/VsHeader.vue";
 </script>
 <style lang="less">
-@import "@/common/style/variable.less";
+@import "./common/style/reset.css";
+@import "./common/style/variable.less";
 
 .tab {
   display: flex;
