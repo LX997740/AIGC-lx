@@ -17,9 +17,7 @@
 <body>
     <div id="app"></div>
     <template id="my-app">
-        <!-- <h2 v-text="message"></h2> -->
         <img :src="imgUrl" alt="">
-        <a :href="url">百度一下</a>
     </template>
 
     <script>
@@ -27,18 +25,12 @@
             template: '#my-app',
             setup() {
                 const message = Vue.ref('<h2>sss</h2>')
-                const imgUrl = Vue.ref('../../../iamge/bg.jpeg')
+                const imgUrl = Vue.ref('https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/01/0E/ChMkJ1bKwhGIJFUZAAVHFzXgsW8AALGiQGvaxcABUcv637.jpg')
                 const url = Vue.ref('https://www.baidu.com')
-                
                 return {
-                    message,
                     imgUrl,
-                    url
                 }
             },
-            competed() {
-
-            }
         }
         Vue.createApp(App).mount('#app')
     </script>
