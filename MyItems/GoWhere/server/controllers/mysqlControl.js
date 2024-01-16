@@ -36,8 +36,8 @@ const allService = {
 };
 
 //登录
-const userLogin = (username, password) => {
-  let _sql = `select * from user where username='${username}' and password='${password}';`;
+const userLogin = (phone, password) => {
+  let _sql = `select * from user where phone='${phone}' and password='${password}';`;
   return allService.query(_sql);
 };
 //注册
@@ -50,7 +50,6 @@ const vaildUser = (username) => {
   let _sql = `select * from user where username='${username}';`;
   return allService.query(_sql);
 };
-
 
 module.exports = {
   userLogin,

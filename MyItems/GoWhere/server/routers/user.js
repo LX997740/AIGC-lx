@@ -13,9 +13,9 @@ const {
 //登录接口
 
 router.post("/login", async (ctx) => {
-  const { username, password } = ctx.request.body;
+  const { phone, password } = ctx.request.body;
   try {
-    const result = await userLogin(username, password);
+    const result = await userLogin(phone, password);
     //如果有result则说明账号密码正确
     if (result.length > 0) {
       let data = result[0];
