@@ -86,7 +86,6 @@ router.beforeEach(async (to, from, next) => {
     // 把token传到后端
     try {
       const res = await axios.get("/protectRoute");
-      console.log(res);
       if (res.data) {
         next();
       }

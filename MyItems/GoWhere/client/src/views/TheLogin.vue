@@ -1,17 +1,22 @@
 <template>
   <div class="h-screen w-screen">
-    <h1 class="text-2xl font-bold text-center my-10">登录</h1>
+    <h1 class="text-2xl font-bold text-center py-8 w-screen">登录</h1>
     <!-- 登录表单 -->
-    <div class="flex items-center justify-center mt-20">
+    <div class="p-10">
+      <div class="w-full flex justify-center">
+        <img src="../assets/img/unnamed.jpg" class="w-20 h-20 rounded-full" />
+      </div>
       <van-form @submit="login">
         <van-cell-group inset>
           <!-- 用户名 -->
           <van-field
+            autofocus
             v-model="username"
             name="用户名"
             label="用户名"
             placeholder="用户名"
             :rules="[{ required: true, message: '请填写用户名' }]"
+            left-icon="user"
           />
           <!-- 密码 -->
           <van-field
@@ -21,10 +26,11 @@
             label="密码"
             placeholder="密码"
             :rules="[{ required: true, message: '请填写密码' }]"
+            left-icon="lock"
           />
         </van-cell-group>
         <!-- 登录按钮 -->
-        <div style="margin: 16px">
+        <div class="mt-5">
           <van-button round block type="primary" native-type="submit">
             登录
           </van-button>
@@ -33,7 +39,7 @@
 
         <van-field name="checkbox" class="mt-20">
           <template #input>
-            <van-checkbox v-model="checked" shape="square" />
+            <van-checkbox v-model="checked" />
             <span class="text-xs ml-2">
               我同意
               <a href="#">《用户协议》</a>和
@@ -49,12 +55,9 @@
 <script setup>
 import { useLoginStore } from "../store/useLoginStore";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
 
-const { username, password } = storeToRefs(useLoginStore());
+const { username, password, checked } = storeToRefs(useLoginStore());
 const { login, toRegister } = useLoginStore();
-
-const checked = ref(true);
 </script>
 
 <style scoped></style>
