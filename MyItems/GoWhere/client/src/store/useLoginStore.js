@@ -6,7 +6,7 @@ import { showSuccessToast, showFailToast } from "vant";
 
 export const useLoginStore = defineStore("login", () => {
   const router = useRouter();
-  const username = ref("");
+  const phone = ref("");
   const password = ref("");
   const checked = ref(false);
 
@@ -19,7 +19,7 @@ export const useLoginStore = defineStore("login", () => {
     }
     //发请求给后端验证登录
     const res = await axios.post("/login", {
-      username: username.value,
+      phone: phone.value,
       password: password.value,
     });
     //保存token
@@ -40,7 +40,7 @@ export const useLoginStore = defineStore("login", () => {
     router.push("/register");
   };
   return {
-    username,
+    phone,
     password,
     checked,
     login,

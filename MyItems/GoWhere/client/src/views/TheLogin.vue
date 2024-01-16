@@ -8,15 +8,15 @@
       </div>
       <van-form @submit="login">
         <van-cell-group inset>
-          <!-- 用户名 -->
+          <!-- 电话 -->
           <van-field
             autofocus
-            v-model="username"
-            name="用户名"
-            label="用户名"
-            placeholder="用户名"
-            :rules="[{ required: true, message: '请填写用户名' }]"
-            left-icon="user"
+            v-model="phone"
+            name="电话"
+            label="电话"
+            placeholder="请输入电话号码"
+            :rules="[{ required: true, message: '请填写电话号码' }]"
+            left-icon="phone"
           />
           <!-- 密码 -->
           <van-field
@@ -56,7 +56,7 @@
 import { useLoginStore } from "../store/useLoginStore";
 import { storeToRefs } from "pinia";
 
-const { username, password, checked } = storeToRefs(useLoginStore());
+const { phone, password, checked } = storeToRefs(useLoginStore());
 const { login, toRegister } = useLoginStore();
 </script>
 
