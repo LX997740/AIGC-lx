@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import { useLoginStore } from "../store/useLoginStore";
+import { useLoginStore } from "@/store/useLoginStore";
 import { storeToRefs } from "pinia";
 
 const { phone, password, checked } = storeToRefs(useLoginStore());
