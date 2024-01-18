@@ -2,8 +2,13 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createPinia } from "pinia";
 import router from "./router";
+
 //引入样式
-import "./assets/main.css";
+//移动端适配
+import "lib-flexible";
+import "@/assets/main.css";
+//引入重置样式
+import "@/assets/style/reset.css";
 
 //引入vant组件
 import {
@@ -14,7 +19,7 @@ import {
   CellGroup,
   Button,
   Checkbox,
-  CheckboxGroup 
+  CheckboxGroup,
 } from "vant";
 import "vant/lib/index.css";
 

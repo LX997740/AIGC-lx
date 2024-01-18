@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import TheBar from "./layout/TheBar.vue";
+import TheBar from "@/views/layout/TheBar.vue";
 </script>
 
 <style scoped></style>

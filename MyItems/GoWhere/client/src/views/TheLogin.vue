@@ -4,7 +4,7 @@
     <!-- 登录表单 -->
     <div class="p-10">
       <div class="w-full flex justify-center">
-        <img src="../assets/img/unnamed.jpg" class="w-20 h-20 rounded-full" />
+        <img src="@/assets/img/unnamed.jpg" class="w-20 h-20 rounded-full" />
       </div>
       <van-form @submit="login">
         <van-cell-group inset>
