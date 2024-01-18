@@ -46,7 +46,9 @@
             注册
           </van-button>
         </div>
-        <div class="text-right" @click="toLogin">点击返回登录</div>
+        <div class="text-right mt-5">
+          <span @click="toLogin">点击返回登录</span>
+        </div>
         <!-- 用户协议 -->
         <van-field name="checkbox" class="mt-20">
           <template #input>

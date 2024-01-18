@@ -35,7 +35,9 @@
             登录
           </van-button>
         </div>
-        <div class="text-right" @click="toRegister">无账号？点击注册</div>
+        <div class="text-right mt-5">
+          <span @click="toRegister">无账号？点击注册</span>
+        </div>
 
         <van-field name="checkbox" class="mt-20">
           <template #input>

@@ -5,7 +5,7 @@ import router from "./router";
 
 //引入样式
 //移动端适配
-import "lib-flexible";
+// import "lib-flexible";
 import "@/assets/main.css";
 //引入重置样式
 import "@/assets/style/reset.css";
