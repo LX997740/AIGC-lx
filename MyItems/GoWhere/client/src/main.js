@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import { createPinia } from "pinia";
 import router from "./router";
+import { lazyLoadDirective } from "@/utils/lazyLoad.js";
 
 //引入样式
 //移动端适配
@@ -28,6 +29,8 @@ import "vant/lib/index.css";
 
 const app = createApp(App);
 const store = createPinia();
+//自定义懒加载指令
+app.directive("lazy", lazyLoadDirective);
 
 app.use(Tabbar);
 app.use(TabbarItem);
