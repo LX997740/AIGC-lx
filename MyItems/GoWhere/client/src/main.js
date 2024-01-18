@@ -20,6 +20,9 @@ import {
   Button,
   Checkbox,
   CheckboxGroup,
+  Search,
+  Grid,
+  GridItem,
 } from "vant";
 import "vant/lib/index.css";
 
@@ -34,6 +37,9 @@ app.use(CellGroup);
 app.use(Button);
 app.use(Checkbox);
 app.use(CheckboxGroup);
+app.use(Search);
+app.use(Grid);
+app.use(GridItem);
 
 app.use(store);
 app.use(router);
