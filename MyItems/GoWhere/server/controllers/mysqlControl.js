@@ -51,8 +51,15 @@ const vaildUser = (phone) => {
   return allService.query(_sql);
 };
 
+//获取推荐攻略群信息
+const getStrategy = () => {
+  let _sql = `select * from strategy;`;
+  return allService.query(_sql);
+};
+
 module.exports = {
   userLogin,
   userRegister,
   vaildUser,
+  getStrategy,
 };

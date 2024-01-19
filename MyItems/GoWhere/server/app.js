@@ -4,7 +4,7 @@ const bodyParser = require("koa-bodyparser"); //让koa能解析post请求
 const cors = require("koa2-cors"); //解决跨域
 
 const user = require("./routers/user.js");
-// const noteList = require("./routers/nodeList.js");
+const strategy = require("./routers/strategy.js");
 
 //主要逻辑
 // const main = (ctx) => {
@@ -13,9 +13,8 @@ const user = require("./routers/user.js");
 app.use(bodyParser());
 app.use(cors()); //告诉浏览器可以跨域
 
-app
-  .use(user.routes())
-  .use(user.allowedMethods());
+app.use(user.routes()).use(user.allowedMethods());
+app.use(strategy.routes()).use(strategy.allowedMethods());
 
 app.listen(3000, () => {
   console.log("服务器启动成功,3000端口");
