@@ -115,3 +115,54 @@ export const useCartStore = defineStore("/Cart", () => {
     Carts,
   };
 });
+//grid仓库
+export const useGridStore = defineStore("/grid", () => {
+  const getGridList = () => {
+    return [
+      {
+        icon: "cart-o",
+        text: "自驾游",
+      },
+      {
+        icon: "guide-o",
+        text: "自由行",
+      },
+      {
+        icon: "friends-o",
+        text: "徒步",
+      },
+      {
+        icon: "friends-o",
+        text: "亲子游",
+      },
+      {
+        icon: "flower-o",
+        text: "露营",
+      },
+      {
+        icon: "after-sale",
+        text: "穷游",
+      },
+      {
+        icon: "cashier-o",
+        text: "购物",
+      },
+      {
+        icon: "video-o",
+        text: "摄影",
+      },
+      {
+        icon: "video-o",
+        text: "人文",
+      },
+      {
+        icon: "video-o",
+        text: "省钱",
+      },
+    ];
+  };
+  const GridArr = ref(getGridList());
+  return {
+    GridArr,
+  };
+});

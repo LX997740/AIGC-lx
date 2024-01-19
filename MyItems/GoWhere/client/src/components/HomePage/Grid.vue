@@ -1,18 +1,19 @@
 <template>
   <van-grid :column-num="5" :border="false">
-    <van-grid-item icon="photo-o" text="文字" />
-    <van-grid-item icon="photo-o" text="文字" />
-    <van-grid-item icon="photo-o" text="文字" />
-    <van-grid-item icon="photo-o" text="文字" />
-    <van-grid-item icon="photo-o" text="文字" />
-    <van-grid-item icon="photo-o" text="文字" />
-    <van-grid-item icon="photo-o" text="文字" />
-    <van-grid-item icon="photo-o" text="文字" />
-    <van-grid-item icon="photo-o" text="文字" />
-    <van-grid-item icon="photo-o" text="文字" />
+    <van-grid-item
+      v-for="item in GridArr"
+      :key="item.id"
+      :icon="item.icon"
+      :text="item.text"
+    />
   </van-grid>
 </template>
 
-<script setup></script>
+<script setup>
+import { useGridStore } from "@/store/useHomePageStore";
+import { storeToRefs } from "pinia";
+
+const { GridArr } = storeToRefs(useGridStore());
+</script>
 
 <style scoped></style>
