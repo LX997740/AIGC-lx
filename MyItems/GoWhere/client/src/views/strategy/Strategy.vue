@@ -13,15 +13,27 @@
         </div>
       </template>
     </Search>
-    攻略群
+    <div class="text-2xl font-bold">推荐攻略群</div>
+    <div v-if="strategyList.length">
+      <div v-for="strategy in strategyList" :key="strategy.id">
+        <div>
+          {{ strategy.name }}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import Search from "@/views/layout/Search.vue";
 import { ref } from "vue";
+import { useStrategyStore } from "@/store/useStrategyStore";
+import { storeToRefs } from "pinia";
 
-const search = ref();
+const search = ref("");
+const { strategyList } = storeToRefs(useStrategyStore());
+
+console.log(strategyList);
 </script>
 
 <style scoped></style>
