@@ -1,5 +1,6 @@
 <template>
-  <van-search v-model="value" placeholder="请输入搜索关键词" />
+  <slot name="home"></slot>
+  <slot name="Strategy"></slot>
 </template>
 
 <script setup></script>

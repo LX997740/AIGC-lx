@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Search />
+    <Search>
+      <template #home>
+        <van-search v-model="value" placeholder="请输入搜索关键词" />
+      </template>
+    </Search>
     <Grid />
     <Recommend />
     <div class="grid grid-cols-2 gap-4" v-lazy="{ Carts }">
