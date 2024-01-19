@@ -1,24 +1,26 @@
 <template>
-  <div class="w-1/2">
-    <div class="">
-      <img src="" alt="" />
-      <span>北海道</span>
+  <div class="">
+    <div class="relative">
+      <img :src="item.img" alt="" />
+      <span class="absolute bottom-0 left-0 px-2 py-1 text-white">{{
+        item.area
+      }}</span>
     </div>
-    <span>我的推荐</span>
+    <span>{{ item.title }}</span>
     <div class="flex justify-between">
-      <span>行走地区</span>
-      <span>9999</span>
+      <span>{{ item.name }}</span>
+      <span>{{ item.count }}</span>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from "vue";
-defineProps({
+import { toRefs } from "vue";
+
+const props = defineProps({
   item: Object,
 });
-const item = defineProps.item;
-console.log(item);
+const { item } = toRefs(props);
 </script>
 
 <style scoped></style>

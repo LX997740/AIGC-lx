@@ -1,9 +1,10 @@
 <template>
+  <!-- 推荐4个 -->
   <div>
     <p class="text-base font-bold m-2.5">推荐</p>
 
     <div
-      class="m-2.5 h-[200px] overflow-hidden bg-[#7d89b9] rounded-[5px] flex items-center"
+      class="m-2.5 h-[200px] overflow-hidden bg-[#7d89b9] rounded-[25px] flex items-center"
     >
       <!-- 左边 -->
       <div class="flex flex-col relative">
