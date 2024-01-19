@@ -14,26 +14,35 @@
       </template>
     </Search>
     <div class="text-2xl font-bold">推荐攻略群</div>
-    <div v-if="strategyList.length">
-      <div v-for="strategy in strategyList" :key="strategy.id">
-        <div>
-          {{ strategy.name }}
-        </div>
-      </div>
+    <div
+      v-for="item in items"
+      :key="item.id"
+      class="flex justify-between items-center w-screen rounded-md mt-2 h-[70px] bg-gray-500"
+    >
+      <List :item="item" :key="item.id" />
     </div>
   </div>
 </template>
 
 <script setup>
+import axios from "@/api";
 import Search from "@/views/layout/Search.vue";
-import { ref } from "vue";
-import { useStrategyStore } from "@/store/useStrategyStore";
-import { storeToRefs } from "pinia";
+import List from "@/components/strategy/List.vue";
+import { ref, onBeforeMount } from "vue";
 
 const search = ref("");
-const { strategyList } = storeToRefs(useStrategyStore());
 
-console.log(strategyList);
+const items = ref();
+
+onBeforeMount(async () => {
+  const { data } = await axios.get("/strategy");
+
+  if (data.code == "8000") {
+    items.value = data.data;
+  } else {
+    alert(data.msg);
+  }
+});
 </script>
 
 <style scoped></style>
