@@ -60,6 +60,22 @@ const routes = [
       title: "注册",
     },
   },
+  {
+    path:"/strategySearch",
+    name:"strategySearch",
+    component:()=>import("@/views/strategy/StrategySearch.vue"),
+    meta:{
+      title:"搜索"
+    }
+  },
+  {
+    path:"/strategyDetail",
+    name:"strategyDetail",
+    component:()=>import("@/views/strategy/StrategyDetail.vue"),
+    meta:{
+      title:"详情"
+    }
+  },
 ];
 
 const router = createRouter({
