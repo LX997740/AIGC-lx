@@ -4,10 +4,12 @@
       <template #Strategy>
         <div class="flex justify-between items-center">
           <van-search
-            v-model="search"
+            v-model="name"
             placeholder="请输入搜索关键词"
             class="w-[360px]"
             shape="round"
+            clearable
+            @focus="strategyDetail"
           />
           <van-icon name="chat-o" class="h-[30px] w-[40px]" />
         </div>
@@ -25,14 +27,19 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
 import axios from "@/api";
 import Search from "@/views/layout/Search.vue";
 import List from "@/components/strategy/List.vue";
 import { ref, onBeforeMount } from "vue";
-
-const search = ref("");
+const router = useRouter();
+const name = ref("");
 
 const items = ref();
+
+const strategyDetail = async () => {
+  router.push("/strategySearch",);
+};
 
 onBeforeMount(async () => {
   const { data } = await axios.get("/strategy");
