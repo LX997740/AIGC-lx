@@ -30,3 +30,95 @@ getNotes<NoteList>(1, 10).then((res) => {
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.note-box {
+  width: 100%;
+  overflow: hidden;
+  flex: 1;
+  padding: 0 0.1rem;
+  box-sizing: border-box;
+  .list-box {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      // 滚动条宽
+      display: none;
+    }
+    &::-webkit-scrollbar-thumb {
+      // 滚动条 拖动条
+      background-color: #f5f5f5;
+      border-radius: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      // 滚动条 背景
+      background-color: #f5f5f5;
+      border-radius: 6px;
+    }
+    .list-left{
+      width: 50%;
+      float: left;
+      padding-bottom: 50px;
+      padding-left: 5px;
+    }
+    .list-right{
+      width: 50%;
+      float: left;
+      display: flex;
+      flex-flow: column wrap;
+      align-items: flex-end;
+      padding-bottom: 50px;
+      padding-right: 5px;
+    }
+    .init-list{
+      width: 50%;
+      position: absolute;
+    }
+    .list-item{
+      box-sizing: border-box;
+      width: 95%;
+      max-height: 2rem;
+      background-color: #fff;
+      border-radius: 0.15rem;
+      margin-top: 0.1rem;
+      padding: 0.2rem;
+      position: relative;
+      box-shadow: 2px 2px 9px #ccc;
+      .item-content{
+        max-height: 1.25rem;
+        font-size: 0.16rem;
+        line-height: 0.25rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+        color: rgb(99, 99, 99);
+        .item-text::first-line{
+          font-weight: 600;
+          color: rgb(27, 27, 27);
+        }
+      }
+      .item-bottom{
+        height: 0.35rem;
+        color: rgb(151, 151, 151);
+        display: flex;
+        align-items: flex-end;
+      }
+      .click-model{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+      }
+      
+    }
+  }
+}
+</style>
