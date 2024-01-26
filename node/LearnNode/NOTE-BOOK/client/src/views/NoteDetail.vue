@@ -23,6 +23,7 @@ const route = useRoute();
 const items = ref();
 
 onBeforeMount(async () => {
+  // 根据ID获取笔记数据
   const { data } = await axios.post("/noteDetail", {
     id: route.query.id,
   });

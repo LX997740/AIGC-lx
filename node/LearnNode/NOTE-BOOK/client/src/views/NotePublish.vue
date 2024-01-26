@@ -73,6 +73,7 @@ const actions = [
   { name: "其他" },
 ];
 const publish = async () => {
+  // 发布笔记
   const res = await axios.post("/publish", {
     note_content: state.content,
     title: state.title,
