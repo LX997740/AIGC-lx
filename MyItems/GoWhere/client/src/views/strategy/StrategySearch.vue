@@ -31,7 +31,7 @@ const onSearch = () => {
   router.push({
     path: "/strategyDetail",
     query: {
-      name,
+      name: name.value,
     },
   });
 };
