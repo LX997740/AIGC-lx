@@ -65,7 +65,7 @@ const qrLogin = () => {
 						uni.request({
 							url: `${baseUrl}/login/qr/check?key=${key}&timestamp=${Date.now()}`,
 							success: (response) => {
-								// console.log(response);
+								console.log(response);
 								msg.value = response.data.message
 								if (response.data.code === 803) {
 									msg.value = response.data.message
