@@ -7,7 +7,7 @@
 					<image class="pic" src="../../static/logo.png" mode="aspectFill"></image>
 				</view>
 				<view class="username">
-					<text>蜗牛</text>
+					<text>牛牛</text>
 					<uni-icons type="right" size="16"></uni-icons>
 				</view>
 			</view>
