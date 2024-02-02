@@ -6,8 +6,10 @@ const { getStrategy } = require("../controllers/mysqlControl");
 
 //获取所有攻略群
 router.get("/strategy", async (ctx) => {
+  const { page, pageSize } = ctx.query;
+  console.log(page, pageSize);
   try {
-    const res = await getStrategy();
+    const res = await getStrategy(page, pageSize);
     if (res) {
       ctx.body = {
         code: "8000",

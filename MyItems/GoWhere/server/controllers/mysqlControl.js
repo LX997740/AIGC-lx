@@ -52,8 +52,9 @@ const vaildUser = (phone) => {
 };
 
 //获取推荐攻略群信息
-const getStrategy = () => {
-  let _sql = `select * from strategy;`;
+const getStrategy = (page, pageSize) => {
+  let start = (page - 1) * pageSize;
+  let _sql = `select * from strategy limit ${start} , ${pageSize};`;
   return allService.query(_sql);
 };
 
