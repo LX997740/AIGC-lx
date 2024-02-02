@@ -32,15 +32,14 @@ import axios from "@/api";
 import Search from "@/views/layout/Search.vue";
 import List from "@/components/strategy/List.vue";
 import { ref, onBeforeMount } from "vue";
+
+
 const router = useRouter();
 const name = ref("");
-
 const items = ref();
-
 const strategyDetail = async () => {
   router.push("/strategySearch",);
 };
-
 onBeforeMount(async () => {
   const { data } = await axios.get("/strategy");
 

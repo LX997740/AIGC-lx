@@ -13,6 +13,7 @@
             show-action
             @search="onSearch"
             @cancel="router.back"
+            @input="debounceSearch"
           />
         </div>
       </template>
@@ -21,16 +22,24 @@
 </template>
 
 <script setup>
+
+import { debounce } from "lodash";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Search from "@/views/layout/Search.vue";
+
 const router = useRouter();
 const name = ref("");
+const debounceSearch = debounce(()=>{
+  console.log(name.value);
+}, 500);
 
+//跳转到详情界面
 const onSearch = () => {
   router.push({
     path: "/strategyDetail",
     query: {
+      //搜索的关键词
       name: name.value,
     },
   });
