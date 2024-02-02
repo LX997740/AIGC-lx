@@ -1,7 +1,11 @@
 <template>
-  <div class="h-screen w-screen">
-    <RouterView />
-    <TheBar />
+  <div>
+    <div class="mb-12">
+      <RouterView />
+    </div>
+    <div>
+      <TheBar />
+    </div>
   </div>
 </template>
 
