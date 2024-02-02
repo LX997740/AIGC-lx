@@ -4,13 +4,13 @@
     <p class="text-base font-bold m-2.5">推荐</p>
 
     <div
-      class="m-2.5 h-[200px] overflow-hidden bg-[#7d89b9] rounded-[25px] flex items-center"
+      class="m-2.5 h-[20rem] overflow-hidden rounded-[25px] flex items-center"
     >
       <!-- 左边 -->
       <div class="flex flex-col relative">
         <!-- 图片 -->
         <img
-          class="w-[260px] h-[200px] rounded-[5px]"
+          class="w-[26rem] h-[20rem] rounded-[5px]"
           :src="recommend[Index].img"
           alt=""
         />
@@ -19,7 +19,7 @@
           <p>{{ recommend[Index].title }}</p>
           <div class="flex mt-2">
             <img
-              class="w-[20px] h-[20px] rounded-[50%]"
+              class="w-[2rem] h-[2rem] rounded-[50%]"
               src="@/assets/img/unnamed.jpg"
               alt=""
             />
@@ -31,12 +31,12 @@
       <!-- 右边 -->
       <div>
         <div
-          class="w-[100px] h-[50px]"
+          class="w-[10rem] h-[5rem]"
           v-for="(item, index) in recommend.slice(0, 4)"
           :key="index"
         >
           <img
-            class="w-[100px] h-[40px] rounded-[25px]"
+            class="w-[10rem] h-[4rem] rounded-[25px]"
             :src="item.img"
             alt=""
             @click="()=> Index = index"
@@ -50,11 +50,19 @@
 <script setup>
 import { useRecommendStore } from "@/store/useHomePageStore";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 const { Recommend } = storeToRefs(useRecommendStore());
 
 const recommend = Recommend.value;
 const Index = ref(0);
+onMounted(() => {
+  setInterval(() => {
+    Index.value = Index.value + 1;
+    if (Index.value > 3) {
+      Index.value = 0;
+    }
+  }, 2000)
+})
 </script>
 
 <style scoped></style>
