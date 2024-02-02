@@ -3,6 +3,7 @@
     <h1 class="text-2xl font-bold text-center py-8 w-screen">登录</h1>
     <!-- 登录表单 -->
     <div class="p-10">
+      <!-- 头像 -->
       <div class="w-full flex justify-center">
         <img src="@/assets/img/unnamed.jpg" class="w-20 h-20 rounded-full" />
       </div>
@@ -38,9 +39,10 @@
         <div class="text-right mt-5">
           <span @click="toRegister">无账号？点击注册</span>
         </div>
-
+        <!-- 用户协议 -->
         <van-field name="checkbox" class="mt-20">
           <template #input>
+            <!-- 勾选了才能登录 -->
             <van-checkbox v-model="checked" />
             <span class="text-xs ml-2">
               我同意
@@ -58,6 +60,7 @@
 import { useLoginStore } from "@/store/useLoginStore";
 import { storeToRefs } from "pinia";
 
+//从pinia仓库中获取登录信息
 const { phone, password, checked } = storeToRefs(useLoginStore());
 const { login, toRegister } = useLoginStore();
 </script>
