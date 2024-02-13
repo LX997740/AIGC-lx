@@ -4,7 +4,7 @@ import { createPinia } from "pinia";
 import router from "./router";
 import { usePermissStore } from "./store/permiss";
 
-import "element-plus/dist/index.css";
+// import "element-plus/dist/index.css";
 import "./assets/css/main.css";
 import "./assets/css/color-dark.css";
 
