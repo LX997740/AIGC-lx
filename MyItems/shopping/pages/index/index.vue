@@ -1,16 +1,11 @@
 <template>
 	<view class="index">
-		<view class="f-active-color">
-			文字
-		</view>
-		<view class="icon-fangdajing iconfont">
-			出来了嘛
-		</view>
+		<IndexSwiper></IndexSwiper>
 	</view>
 </template>
 
 <script setup>
-
+	import  IndexSwiper from "@/components/index/IndexSwiper.vue"
 </script>
 
 <style>
