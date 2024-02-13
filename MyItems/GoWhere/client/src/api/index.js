@@ -3,6 +3,8 @@ import { showFailToast } from "vant";
 
 axios.defaults.baseURL = "http://localhost:3000";
 axios.defaults.headers.post["Content-Type"] = "application/json";
+axios.defaults.timeout = 20 * 1000;
+axios.defaults.maxBodyLength = 5 * 1024 * 1024;
 
 //请求拦截
 axios.interceptors.request.use(
