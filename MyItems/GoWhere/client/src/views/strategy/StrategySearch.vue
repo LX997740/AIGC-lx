@@ -22,7 +22,6 @@
 </template>
 
 <script setup>
-
 import { debounce } from "lodash";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
@@ -30,7 +29,8 @@ import Search from "@/views/layout/Search.vue";
 
 const router = useRouter();
 const name = ref("");
-const debounceSearch = debounce(()=>{
+//防抖函数
+const debounceSearch = debounce(() => {
   console.log(name.value);
 }, 500);
 

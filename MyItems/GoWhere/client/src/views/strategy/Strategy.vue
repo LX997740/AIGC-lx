@@ -23,8 +23,8 @@
     >
       <List :item="item" :key="item.id" />
     </div>
-    <div v-if="loading" class="text-center">loading...</div>
-    <div v-if="!noMoreData" class="text-center">没有更多数据了</div>
+    <div v-if="!state.noMoreData" class="text-center">loading...</div>
+    <div v-else class="text-center">没有更多数据了</div>
   </div>
 </template>
 
@@ -38,7 +38,6 @@ import { ref, onBeforeMount, reactive } from "vue";
 const router = useRouter();
 const name = ref("");
 const items = ref([]);
-const loading = ref(true);
 const state = reactive({
   noMoreData: false,
   page: 1,
@@ -63,8 +62,9 @@ const handleScroll = () => {
   const windowHeight = window.innerHeight;
 
   // 判断是否滚动到页面底部
-  if (scrollY + windowHeight >= pageHeight - 100 && !loading.value) {
+  if (scrollY + windowHeight >= pageHeight - 100 && !state.noMoreData) {
     // 加载更多数据
+    state.page++;
     getStrategy();
   }
 };
@@ -76,17 +76,17 @@ const getStrategy = async () => {
       pageSize: state.pageSize,
     },
   });
-  loading.value = false;
-  state.page++;
+  // console.log(data);
+  //判断是否没有更多数据
   if (data.data.length === 0) {
     state.noMoreData = true;
   }
 
   if (data.code == "8000") {
-    console.log(data.data);
+    // console.log(data.data);
     items.value = [...items.value, ...data.data];
   } else {
-    alert(data.msg);
+    console.log(data.msg);
   }
 };
 </script>
