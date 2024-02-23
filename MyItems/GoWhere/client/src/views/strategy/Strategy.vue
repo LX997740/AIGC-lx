@@ -19,7 +19,8 @@
     <div
       v-for="item in items"
       :key="item.id"
-      class="flex justify-between items-center w-screen rounded-md mt-2 h-[70px] bg-gray-500 p-3"
+      class="flex justify-between items-center w-screen rounded-md mt-2 h-[70px]"
+      :style="`background-color: ${color[Math.floor(Math.random() * 4)]}`"
     >
       <List :item="item" :key="item.id" />
     </div>
@@ -43,6 +44,7 @@ const state = reactive({
   page: 1,
   pageSize: 10,
 });
+const color = ref(["#f00", "#00f", "#0f0", "#000"]);
 //跳转到攻略搜索页
 const strategyDetail = async () => {
   router.push("/strategySearch");

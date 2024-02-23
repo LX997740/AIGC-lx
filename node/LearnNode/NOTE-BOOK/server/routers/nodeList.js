@@ -1,6 +1,6 @@
 const Router = require("@koa/router");
 const router = new Router();
-const { formateDate } = require("../config/utils.js");
+const { formateDate } = require("../utils/utils.js");
 
 const {
   findNoteListByType,

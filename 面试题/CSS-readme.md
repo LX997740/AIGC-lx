@@ -75,11 +75,11 @@ align-content 属性定义了多根轴线的对齐方式。如果项目只有一
 
 ## 4.css 中，有哪些方式可以隐藏页面元素？区别?
 
-1. display:none;
-2. visibility:hidden;
-3. opacity:0;
-4. position:absolute; 通过绝对定位将元素移出可视区域。
-5. z-index:-9999; 通过 z-index 元素被放置在最底层，不显示在页面上。
+display: none 脱离文档流 无法响应事件 回流重绘
+visibility: hidden 占据文档流 无法响应事件 重绘
+opacity: 0 占据文档流 响应事件 重绘 || 不重绘
+position: absolute 脱离文档流 无法响应事件 回流重绘
+clip-path: circle(0%) 占据文档流 无法响应事件 重绘
 
 ### 4.1 display:none; , visibility:hidden; , opacity:0; 区别
 
@@ -149,3 +149,107 @@ CSS3 提供了以下几种实现动画的方式：
   1. 使用绝对定位 ， 父元素设置 `position:relative`，子元素设置 `position:absolute`，并设置 `top:50%` `left:50%` `transform:translate(-50%,-50%)`
   2. 使用 flex 布局
   3. 使用表格布局
+
+## 1. 说说你对css盒模型的理解
+  
+
+  1. 是什么
+    浏览器在页面布局时，将所有元素表示为一个个矩形的盒子，每个盒子包含四个部分
+  2. IE  和 标准
+## 2. css中的选择器有哪些？说说优先级
+  id 类名  标签 后代 子级 兄弟选择器 群组选择器 属性  伪类 伪元素
+
+  ！important>内联》id 》类名》 标签
+## 3. 说说css中的单位有哪些？
+
+  1. px：像素，单位是像素（pixel）。1px = 1个像素点。在不同的设备上，1px的大小并不相同。
+  2. em：相对单位，单位是em。1em = 当前字体的大小。
+  3. %：百分比，单位是百分比。1% = 当前父元素的宽度的1%。
+  4. rem：相对单位，单位是rem。1rem = html根元素font-size的大小。
+  5. vw：视口单位，单位是vw。1vw = 当前视口宽度的1%。
+  
+
+## 4. 谈谈你对BFC的理解
+是什么 块级格式化上下文，是页面中一个渲染区域，有一套属于自己的渲染规则
+
+渲染规则
+
+BFC容器在计算高度时，浮动元素的高度也会计算在内
+BFC容器内的子元素的margin-top不会和BfC这个父容器发成重叠
+遵照从上往下从左往右的布局排列
+触发条件
+
+overflow: 不为visible
+float
+display: inline-block || inline-xxx || flex || table-xxx || grid
+position: absolute || fixed
+应用 清除浮动
+
+7. 水平垂直居中的方式有哪些？ !!!!!
+  position: absolute + translate || margin负值(已知宽高)
+  flex
+  grid
+  table: text-align + vertical-align (子容器不能是块级)
+  margin(已知宽高)
+8. 三栏布局怎么实现？
+  两栏布局：
+flex
+grid
+float + margin-left
+三栏布局:
+flex
+grid
+左右先加载内容后加载：float + margin
+圣杯布局：float + margin负值 + position:relative
+双飞翼布局：float + margin负值
+9. 说说flexbox
+  是什么 是一种布局方式，可以简便完整响应式的实现页面布局，容器中默认存在两条轴，主轴，交叉轴，默认x轴为主轴，可以用flex-direction来修改主轴的方向
+
+  特征
+
+  可以控制子元素在主轴上的对齐方式
+  可以控制子元素在交叉轴上的对齐方式
+  可以控制子元素 缩放比例， 排列顺序
+  应用场景
+
+  多栏布局
+  居中
+10. css3新增了那些属性？
+  选择器： 属性选择器，伪类选择器
+  box-shadow
+  裁剪： background-clip
+  transition (过渡)
+  transform
+  animation （动画）
+  渐变色
+1.  css3中常见的动画有哪些？怎么实现？
+  transition ： 当其他属性值发生变更时，控制该值变更所花费的时间以及变更曲线
+  transform ： 用于做容器的旋转，平移，缩放，倾斜等动画
+  animation ：控制容器动画的关键帧
+1.  说说回流重绘 （重排重绘）
+    是什么 回流：浏览器渲染页面之前需要对结构进行布局计算 重绘：将已经计算好布局的容器绘制出来
+
+    触发 回流：页面上有容器的几何属性发生变更 重绘：容器非几何属性变更 （字体，颜色）
+
+    回流必定重绘
+2.  什么是响应式？
+  是什么 跟随用户设备尺寸的变化，页面实现自动的适配
+
+  实现方案：
+
+  flex (适用于某个容器内的响应式)
+  % (常适用于外层大容器) ------ 继承父容器的大小
+  rem + 媒体查询 （可用于任何地方） -------- 虽然也要写多个媒体查询，但是每个媒体查询中的代码量少
+  媒体查询 （可用于任何地方） --------- 代码量大
+  vw/vh (常适用于外层大容器) ------- 相对window大小
+3.  视差滚动效果如何实现？
+  是什么 多层背景以不同的速度进行移动，实现视觉上的落差
+
+  实现：
+
+  background-attachment: fixed;
+  perspective + translateZ
+4.  css画一个三角形
+5.  如何显示一个小于10px的文字
+  zoom
+  transform: scale(xxx);

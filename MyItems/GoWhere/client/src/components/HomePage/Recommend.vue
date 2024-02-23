@@ -4,13 +4,13 @@
     <p class="text-base font-bold m-2.5">推荐</p>
 
     <div
-      class="m-2.5 h-[20rem] overflow-hidden rounded-[25px] flex items-center"
+      class="m-2.5 h-[20rem] overflow-hidden rounded-[25px] flex items-center w-flex"
     >
       <!-- 左边 -->
-      <div class="flex flex-col relative">
+      <div class="relative">
         <!-- 图片 -->
         <img
-          class="w-[26rem] h-[20rem] rounded-[5px]"
+          class="w-screen h-[20rem] rounded-[5px]"
           :src="recommend[Index].img"
           alt=""
         />
@@ -29,17 +29,13 @@
         </div>
       </div>
       <!-- 右边 -->
-      <div>
-        <div
-          class="w-[10rem] h-[5rem]"
-          v-for="(item, index) in recommend.slice(0, 4)"
-          :key="index"
-        >
+      <div class="absolute right-[5%] z-10">
+        <div v-for="(item, index) in recommend.slice(0, 4)" :key="index">
           <img
-            class="w-[10rem] h-[4rem] rounded-[25px]"
+            class="w-[5rem] h-[4rem] rounded-[25px]"
             :src="item.img"
             alt=""
-            @click="()=> Index = index"
+            @click="() => (Index = index)"
           />
         </div>
       </div>
@@ -61,8 +57,8 @@ onMounted(() => {
     if (Index.value > 3) {
       Index.value = 0;
     }
-  }, 2000)
-})
+  }, 2000);
+});
 </script>
 
 <style scoped></style>
