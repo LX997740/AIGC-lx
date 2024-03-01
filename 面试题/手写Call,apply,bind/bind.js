@@ -1,7 +1,17 @@
-//定义一个mybind方法
-Function.prototype.mybind = function (thisArg, ...args) {
-  //返回绑定this的函数
-  return (...reArgs) => {
-    return this.call(thisArg, ...args, ...reArgs);
+// bind 函数实现
+Function.prototype.myBind = function (context) {
+  // 判断调用对象是否为函数
+  if (typeof this !== "function") {
+    throw new TypeError("Error");
+  }
+  // 获取参数
+  let args = [...arguments].slice(1);
+  let fn = this;
+  return function Fn() {
+    // 根据调用方式，传入不同绑定值
+    return fn.apply(
+      this instanceof Fn ? this : context,
+      args.concat(...arguments)
+    );
   };
 };

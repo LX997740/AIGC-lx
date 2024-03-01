@@ -2,15 +2,15 @@ class MyPromise {
   constructor(callback) {
     // 初始化状态为pending
     this.status = "pending";
-    // 初始化值为空字符串
-    this.value = "";
-    // 初始化原因为空字符串
-    this.reason = "";
+    // 初始化值
+    this.value = undefined;
+    // 初始化原因
+    this.reason = undefined;
     // 存储成功状态的回调函数数组
     this.onResolvedCallbacks = [];
     // 存储失败状态的回调函数数组
     this.onRejectedCallbacks = [];
-    
+
     // 定义resolve函数，用于将状态从pending变为resolved
     const resolve = (value) => {
       if (this.status == "pending") {
@@ -41,7 +41,11 @@ class MyPromise {
   then(onResolved, onRejected) {
     // 如果onResolved是函数，则直接使用，否则默认为返回值不变的函数
     onResolved =
-      typeof onResolved === "function" ? onResolved : (value) => value;
+      typeof onResolved === "function"
+        ? onResolved
+        : (value) => {
+            return value;
+          };
     // 如果onRejected是函数，则直接使用，否则默认为抛出异常的函数
     onRejected =
       typeof onRejected === "function"
@@ -106,6 +110,7 @@ class MyPromise {
     // 返回新的Promise对象
     return promise2;
   }
+  
   catch(onRejected) {
     // 等同于then(null, onRejected)
     return this.then(null, onRejected);

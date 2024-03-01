@@ -1,24 +1,13 @@
-// 1.定义mycall方法
-// 2.设置this并调用原函数
-// 3.接受剩余参数并返回结果
-
-//1.定义mycall方法
+// 为Function.prototype添加一个名为myCall的方法
 Function.prototype.mycall = function (thisArg, ...args) {
-  // 2.设置this并调用原函数
-  //thisArg 传入的设置this的对象
-  //   this 原函数的this
+  // 创建一个Symbol类型的key
   const key = Symbol("key");
+  // 将this绑定到thisArg的key上
   thisArg[key] = this;
-  // 3.接受剩余参数并返回结果
+  // 调用thisArg的key方法，并传入args作为参数
   const res = thisArg[key](...args);
-  delete thisArg.f;
-  return res;
-};
-
-Function.prototype.mycall2 = function (thisArg, ...args) {
-  const key = Symbol("key");
-  thisArg[key] = this;
-  const res = thisArg[key](...args);
+  // 删除thisArg的key
   delete thisArg[key];
+  // 返回调用结果
   return res;
 };
